@@ -1,0 +1,71 @@
+
+root = true
+
+[*]
+
+charset = utf-8
+end_of_line = lf
+
+indent_style = tab
+indent_size = 4
+
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.cs]
+
+# Ignore warnings
+
+dotnet_diagnostic.IDE0016.severity = none
+# dotnet_diagnostic.IDE0044.severity = none
+# dotnet_diagnostic.IDE0051.severity = none
+dotnet_diagnostic.IDE0270.severity = none
+
+
+# dotnet_analyzer_diagnostic.category-Style.severity = none
+# dotnet_analyzer_diagnostic.category-CodeQuality.severity = none
+
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+# Naming conventions
+
+# styles	===============================================================================
+
+# macro_case
+dotnet_naming_style.macro_case.capitalization						= all_upper
+dotnet_naming_style.macro_case.word_separator 						= _
+
+# enum_style
+dotnet_naming_style.enum_style.capitalization						= pascal_case
+dotnet_naming_style.enum_style.required_prefix						= E
+
+# symbols	===============================================================================
+
+# readonly_fields
+dotnet_naming_symbols.readonly_members.applicable_kinds				= field
+dotnet_naming_symbols.readonly_members.required_modifiers			= readonly
+
+# const_fields
+dotnet_naming_symbols.const_members.applicable_kinds				= field
+dotnet_naming_symbols.const_members.required_modifiers				= const
+
+# enum_definitions
+dotnet_naming_symbols.enum_definitions.applicable_kinds				= enum
+# rules		===============================================================================
+
+# const_fields_require_macro
+dotnet_naming_rule.const_members_require_macro.symbols				= const_members
+dotnet_naming_rule.const_members_require_macro.style				= macro_case
+dotnet_naming_rule.const_members_require_macro.severity				= suggestion
+
+# readonly_fields_require_macro
+# dotnet_naming_rule.readonly_members_require_macro.symbols			= readonly_members
+# dotnet_naming_rule.readonly_members_require_macro.style			= macro_case
+# dotnet_naming_rule.readonly_members_require_macro.severity		= suggestion
+
+# enum_require_style
+dotnet_naming_rule.enum_definitions_require_style.symbols			= enum_definitions
+dotnet_naming_rule.enum_definitions_require_style.style				= enum_style
+dotnet_naming_rule.enum_definitions_require_style.severity			= warning
