@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://du2gfks577hpx"]
+[gd_scene load_steps=6 format=3 uid="uid://du2gfks577hpx"]
 
 [ext_resource type="Script" path="res://this/scripts/Hand.cs" id="1_sg0se"]
 
@@ -11,11 +11,43 @@ height = 0.3
 radial_segments = 16
 rings = 8
 
-[node name="hand" type="RigidBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_e7dyt"]
+radius = 0.1
+
+[sub_resource type="SphereMesh" id="SphereMesh_mld7h"]
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 4
+
+[node name="hand" type="RigidBody3D" node_paths=PackedStringArray("area")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+gravity_scale = 0.0
+can_sleep = false
+freeze_mode = 1
+linear_damp_mode = 1
+linear_damp = 10.0
+angular_damp_mode = 1
+angular_damp = 10.0
 script = ExtResource("1_sg0se")
+linear_sensitivity = 50.0
+angular_sensitivity = 2.0
+angular_reset_sensitivity = 50.0
+area = NodePath("Area3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_uovei")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_cbrtr")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_e7dyt")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_mld7h")
+skeleton = NodePath("../..")

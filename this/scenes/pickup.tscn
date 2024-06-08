@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqe0e5u2tq3lh"]
+[gd_scene load_steps=7 format=3 uid="uid://cqe0e5u2tq3lh"]
+
+[ext_resource type="Script" path="res://this/scripts/Pickup.cs" id="1_hp333"]
+[ext_resource type="Script" path="res://this/scripts/Barcode.cs" id="2_0n4x7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5vxrc"]
 radius = 0.25
@@ -9,12 +12,30 @@ height = 0.5
 radial_segments = 16
 rings = 8
 
-[node name="Pickup" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_kw1bd"]
+size = Vector3(0.2, 0.2, 0.1)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[sub_resource type="BoxMesh" id="BoxMesh_opjdd"]
+size = Vector3(0.2, 0.2, 0.1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="pickup" type="RigidBody3D"]
+mass = 0.05
+script = ExtResource("1_hp333")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5vxrc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_nhgub")
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("owner")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+monitoring = false
+script = ExtResource("2_0n4x7")
+owner = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_kw1bd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_opjdd")
