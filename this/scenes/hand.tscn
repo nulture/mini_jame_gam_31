@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://du2gfks577hpx"]
+
+[ext_resource type="Script" path="res://this/scripts/Hand.cs" id="1_sg0se"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uovei"]
+radius = 0.15
+
+[sub_resource type="SphereMesh" id="SphereMesh_cbrtr"]
+radius = 0.15
+height = 0.3
+radial_segments = 16
+rings = 8
+
+[node name="hand" type="RigidBody3D"]
+script = ExtResource("1_sg0se")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_uovei")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_cbrtr")

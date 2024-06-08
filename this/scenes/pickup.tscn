@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqe0e5u2tq3lh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5vxrc"]
+radius = 0.25
+
+[sub_resource type="SphereMesh" id="SphereMesh_nhgub"]
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 8
+
+[node name="Pickup" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_5vxrc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_nhgub")
